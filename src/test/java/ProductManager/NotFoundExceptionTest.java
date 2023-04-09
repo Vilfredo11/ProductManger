@@ -3,11 +3,9 @@ package ProductManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class RepositoryTest {
+public class NotFoundExceptionTest {
     @Test
-    public void testRemoveWhenProductExist() {
+    public void testRemoveWhenProductNotExist() {
         Repository repo = new Repository();
         Book book1 = new Book(321, "It", 500, "Stephen King");
         Book book2 = new Book(322, "The Shining", 550, "Stephen King");
@@ -18,12 +16,7 @@ class RepositoryTest {
         repo.add(book2);
         repo.add(book3);
         repo.add(phone1);
-        repo.removeById(323);
-        Product[] actual = repo.findAll();
-        Product[] expected = {book1, book2, phone1};
 
-        Assertions.assertArrayEquals(expected, actual);
+Assertions.assertThrows(NotFoundException.class, ()-> repo.removeById(10));
     }
-
-
 }
